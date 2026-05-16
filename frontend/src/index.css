@@ -1,0 +1,340 @@
+:root {
+  --bg-base: #111115;
+  --panel-bg: #1e1e24;
+  --panel-border: #2c2c35;
+  --accent: #e10600; /* F1 Red */
+  --accent-hover: #ff1a1a;
+  --text-main: #ffffff;
+  --text-muted: #888890;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+}
+
+/* Dashboard Layout */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+  animation: fadeIn 0.8s ease-out;
+}
+
+@media (min-width: 900px) {
+  .dashboard-layout {
+    grid-template-columns: 350px 1fr;
+  }
+}
+
+/* Panels */
+.panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.panel-header {
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--panel-border);
+  padding-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text-main);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+h1::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 24px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+p.subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Forms and Inputs */
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.help-text {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+  font-style: italic;
+}
+
+input, select {
+  background: var(--bg-base);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  padding: 0.8rem 1rem;
+  color: var(--text-main);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+select option {
+  background: var(--panel-bg);
+  color: white;
+}
+
+/* Buttons */
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background: var(--accent-hover);
+}
+
+button:disabled {
+  background: var(--panel-border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+/* Telemetry Panel */
+.telemetry-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-align: center;
+  border: 2px dashed var(--panel-border);
+  border-radius: 8px;
+  min-height: 300px;
+}
+
+/* Results Section */
+.results-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.race-meta {
+  display: flex;
+  gap: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.race-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.race-meta strong {
+  color: var(--text-main);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.result-card {
+  background: var(--bg-base);
+  border-left: 4px solid var(--panel-border);
+  border-radius: 4px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.result-card.verdict-good {
+  border-left-color: #00e676;
+}
+
+.result-card.verdict-bad {
+  border-left-color: #ff1744;
+}
+
+.result-value {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  font-family: monospace;
+}
+
+.result-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.verdict-good-text {
+  color: #00e676;
+}
+
+.verdict-bad-text {
+  color: #ff1744;
+}
+
+.error-card {
+  background: rgba(255, 23, 68, 0.1);
+  border-left: 4px solid #ff1744;
+  padding: 1.5rem;
+  color: #ff1744;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.anomaly-card {
+  background: var(--bg-base);
+  border: 1px solid var(--panel-border);
+  border-left: 4px solid #ff9100;
+  color: var(--text-main);
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.anomaly-icon {
+  font-size: 2.5rem;
+}
+
+.graph-container {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--panel-border);
+}
+
+/* Car Loader */
+.car-loader-container {
+  padding: 3rem 2rem;
+  background: var(--bg-base);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-out;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.track {
+  width: 100%;
+  height: 40px;
+  border-bottom: 2px dashed var(--panel-border);
+  position: relative;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.car {
+  font-size: 2rem;
+  position: absolute;
+  bottom: -4px;
+  left: -50px;
+  transform: scaleX(-1);
+  animation: drive 2.5s ease-in-out infinite;
+}
+
+.loading-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: pulseText 1.5s ease-in-out infinite;
+}
+
+@keyframes drive {
+  0% { left: -50px; }
+  100% { left: 100%; }
+}
+
+@keyframes pulseText {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
