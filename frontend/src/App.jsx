@@ -32,7 +32,7 @@ function App() {
     setUnregisteredData(null);
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://let-decide.onrender.com';
       const response = await fetch(`${apiUrl}/api/simulate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
